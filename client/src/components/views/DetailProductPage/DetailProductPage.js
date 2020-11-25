@@ -11,7 +11,6 @@ function DetailProductPage(props) {
     useEffect(() => {
         axios.get(`/api/product/product_by_id?id=${productId}&type=single`)
         .then(response => {
-            console.log(response);
             setProduct(response.data[0]);
         })
         .catch(err => alert(err))

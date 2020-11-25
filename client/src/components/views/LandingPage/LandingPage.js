@@ -118,7 +118,7 @@ function LandingPage() {
     return (
         <div style={{width:'75%', margin: '3rem auto'}}>
             <div style={{textAlign: 'center' }}>
-                <h2>Let's Travel Anywhere </h2>
+                <h2> 도서 목록 </h2>
             </div>
 
             <Row gutter={[16, 16]}>
