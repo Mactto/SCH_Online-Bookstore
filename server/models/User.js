@@ -30,6 +30,14 @@ const userSchema = mongoose.Schema({
         type: Array,
         default: []
     },
+    card: {
+        type: Array,
+        default: []
+    },
+    address: {
+        type: Array,
+        default: []
+    },
     history: {
         type: Array,
         default: []
