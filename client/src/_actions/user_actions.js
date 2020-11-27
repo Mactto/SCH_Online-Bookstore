@@ -8,6 +8,7 @@ import {
     GET_CART_ITEMS,
     REMOVE_CART_ITEM,
     ON_SUCCESS_BUY,
+    ADD_TO_CARD,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -113,6 +114,21 @@ export function onSuccessBuy(data) {
 
     return {
         type: ON_SUCCESS_BUY,
+        payload: request,
+    }
+}
+
+export function addToCard(cardInfo) {
+    let body = {
+        info: cardInfo,
+    }
+    const request = axios.post(`${USER_SERVER}/addToCard`, body)
+    .then(response => {
+        return response.data;
+    });
+
+    return {
+        type: ADD_TO_CARD,
         payload: request,
     }
 }

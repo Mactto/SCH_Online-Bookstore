@@ -207,4 +207,25 @@ router.post('/successBuy', auth, (req, res) => {
     )
 })
 
+
+router.post("/addToCard", auth, (req, res) => {
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            $push: {
+                card: {
+                    num: req.body.info.cardNum,
+                    validity: req.body.info.validity,
+                    company: req.body.info.kind,
+                }
+            }
+        },
+        { new:true },
+        (err, cardInfo) => {
+            if (err) return res.status(400).json({success:false, err})
+            return res.status(200).send(cardInfo.card);
+        }
+    )
+});
+
 module.exports = router;

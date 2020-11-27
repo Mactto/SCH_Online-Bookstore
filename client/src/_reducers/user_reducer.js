@@ -7,6 +7,7 @@ import {
     GET_CART_ITEMS,
     REMOVE_CART_ITEM,
     ON_SUCCESS_BUY,
+    ADD_TO_CARD,
 } from '../_actions/types';
  
 
@@ -27,7 +28,9 @@ export default function(state={},action){
         case REMOVE_CART_ITEM:
             return {...state, cartDetail: action.payload.productInfo, userData:{...state.userData, cart: action.payload.cart}}
         case ON_SUCCESS_BUY:
-            return {...state, cartDetail: action.payload.cartDetail, userData:{...state.userData, cart: action.payload.cart}}
+            return {...state, cartDetail: action.payload.cartDetail, userData:{...state.userData, cart: action.payload.cart}}         
+        case ADD_TO_CARD:
+            return {...state, cardInfo: {...state.cardInfo, card: action.payload}}
         default:
             return state;
     }
