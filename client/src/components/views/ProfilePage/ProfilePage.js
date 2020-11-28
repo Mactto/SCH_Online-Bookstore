@@ -43,11 +43,29 @@ function ProfilePage(props) {
         setModify(false);
     } 
 
+    const renderCards = () => (
+        props.user.userData.card.map((item, index) => (
+            <tr key={index}>
+                <td>{item.num}</td>
+                <td>{item.validity}</td>
+                <td>{item.company}</td>
+            </tr>
+        ))
+    )
+
+    const renderAddrs = () => (
+        props.user.userData.address.map((item, index) => (
+            <tr key={index}>
+                <td>{item.zipcode}</td>
+                <td>{item.addr}</td>
+            </tr>
+        ))
+    )
+
     return (
         <div>
             {props.user.userData && 
             <div style={{marginLeft: 50, marginTop: 50, fontSize:25}}>
-                <div>{console.log(props.user.userData)}</div>
                 <Row gutter={[16,16]}>
                     <Col>[ 회원 정보 ]</Col>
                     <Col>User ID : {modify ? <div>input</div> : props.user.userData._id}</Col>
@@ -56,10 +74,36 @@ function ProfilePage(props) {
                 </Row>
                 <Row gutter={[16,16]}>
                     <Col>[ 카드 정보 ]</Col>
+                    {!cardPopup && 
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>카드번호</td>
+                                    <td>유효기간</td>
+                                    <td>카드회사</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {renderCards()}
+                            </tbody>
+                        </table>}
                     {cardPopup ? <CardPopup func={cardPopupHandler}/> : <Button type="primary" onClick={addCardHandler}>카드 추가</Button>}
                 </Row>
                 <Row gutter={[16,16]}>
                     <Col>[ 배송 주소 ]</Col>
+                    {!addressPopup && 
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>우편번호</td>
+                                        <td>상세주소</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {renderAddrs()}
+                                </tbody>
+                            </table>
+                    }
                     {addressPopup ? <AddressPopup func={addressPopupHandler}/> : <Button type="primary" onClick={addAddressHandler}>배송지 추가</Button>}
                 </Row>
                 {modify ? (<Button type="primary" onClick={confirmHandler}>수정완료</Button>) : (<Button type="primary" onClick={modifyHandler}>프로필 수정</Button>)}

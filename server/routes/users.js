@@ -21,6 +21,8 @@ router.get("/auth", auth, (req, res) => {
         role: req.user.role,
         image: req.user.image,
         cart: req.user.cart,
+        card: req.user.card,
+        address: req.user.address,
         history: req.user.history,
     });
 });
@@ -246,5 +248,17 @@ router.post("/addToAddress", auth, (req, res) => {
         }
     )
 });
+
+/* 수취 완료시 작업
+                Product.findOneAndUpdate(
+                    {_id: req.body.productId},
+                    {$inc: {"inventory" : -1}},
+                    {$inc: {"sold" : 1}},
+                    {new:true},
+                    (err, userInfo) => {
+                        if (err) return res.status(400).json({success:false, err})
+                    }
+                )
+*/
 
 module.exports = router;

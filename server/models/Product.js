@@ -30,9 +30,9 @@ const productSchema = mongoose.Schema({
         type: Number,
         default: 1
     },
-    views: {
+    inventory: {
         type: Number,
-        default: 0
+        default: 100
     }
 }, {timestamps:true})
 
