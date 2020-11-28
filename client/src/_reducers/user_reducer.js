@@ -8,6 +8,7 @@ import {
     REMOVE_CART_ITEM,
     ON_SUCCESS_BUY,
     ADD_TO_CARD,
+    ADD_TO_ADDRESS,
 } from '../_actions/types';
  
 
@@ -31,6 +32,8 @@ export default function(state={},action){
             return {...state, cartDetail: action.payload.cartDetail, userData:{...state.userData, cart: action.payload.cart}}         
         case ADD_TO_CARD:
             return {...state, cardInfo: {...state.cardInfo, card: action.payload}}
+        case ADD_TO_ADDRESS:
+            return {...state, addressInfo: {...state.addressInfo, address: action.payload}}
         default:
             return state;
     }

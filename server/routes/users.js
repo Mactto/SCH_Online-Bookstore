@@ -207,7 +207,6 @@ router.post('/successBuy', auth, (req, res) => {
     )
 })
 
-
 router.post("/addToCard", auth, (req, res) => {
     User.findOneAndUpdate(
         {_id: req.user._id},
@@ -224,6 +223,26 @@ router.post("/addToCard", auth, (req, res) => {
         (err, cardInfo) => {
             if (err) return res.status(400).json({success:false, err})
             return res.status(200).send(cardInfo.card);
+        }
+    )
+});
+
+router.post("/addToAddress", auth, (req, res) => {
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            $push: {
+                address: {
+                    zipcode: req.body.info.zipCode,
+                    addr: req.body.info.addr
+
+                }
+            }
+        },
+        { new:true },
+        (err, addressInfo) => {
+            if (err) return res.status(400).json({success:false, err})
+            return res.status(200).send(addressInfo.address);
         }
     )
 });

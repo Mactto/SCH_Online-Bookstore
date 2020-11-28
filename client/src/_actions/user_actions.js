@@ -9,6 +9,7 @@ import {
     REMOVE_CART_ITEM,
     ON_SUCCESS_BUY,
     ADD_TO_CARD,
+    ADD_TO_ADDRESS,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -129,6 +130,21 @@ export function addToCard(cardInfo) {
 
     return {
         type: ADD_TO_CARD,
+        payload: request,
+    }
+}
+
+export function addToAddress(addressInfo) {
+    let body = {
+        info: addressInfo,
+    }
+    const request = axios.post(`${USER_SERVER}/addToAddress`, body)
+    .then(response => {
+        return response.data;
+    });
+
+    return {
+        type: ADD_TO_ADDRESS,
         payload: request,
     }
 }
