@@ -157,6 +157,7 @@ router.post('/successBuy', auth, (req, res) => {
             price: item.price,
             quantity: item.quantity,
             paymentId: req.body.paymentData.paymentId,
+            state: false,
         })
     })
 
@@ -165,6 +166,8 @@ router.post('/successBuy', auth, (req, res) => {
         id: req.user._id,
         name: req.user.name,
         email: req.user.email,
+        card: req.body.info.cardInfo,
+        address: req.body.info.addrInfo
     }
     transactionData.data = req.body.paymentData;
     transactionData.product = history;

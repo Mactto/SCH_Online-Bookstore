@@ -65,14 +65,14 @@ function ProfilePage(props) {
     return (
         <div>
             {props.user.userData && 
-            <div style={{marginLeft: 50, marginTop: 50, fontSize:25}}>
+            <div style={{marginLeft: 50, marginTop: 50, fontSize:20}}>
                 <Row gutter={[16,16]}>
                     <Col>[ 회원 정보 ]</Col>
-                    <Col>User ID : {modify ? <div>input</div> : props.user.userData._id}</Col>
-                    <Col>Email : {modify ? <div>input</div> : props.user.userData.email}</Col>
-                    <Col>Name : {modify ? <div>input</div> : props.user.userData.name}</Col>
+                    <Col>유저 ID : {modify ? <div>input</div> : props.user.userData._id}</Col>
+                    <Col>이메일 : {modify ? <div>input</div> : props.user.userData.email}</Col>
+                    <Col>이름 : {modify ? <div>input</div> : props.user.userData.name}</Col>
                 </Row>
-                <Row gutter={[16,16]}>
+                <Row style={{marginTop: '50px'}} gutter={[16,16]}>
                     <Col>[ 카드 정보 ]</Col>
                     {!cardPopup && 
                         <table>
@@ -89,7 +89,7 @@ function ProfilePage(props) {
                         </table>}
                     {cardPopup ? <CardPopup func={cardPopupHandler}/> : <Button type="primary" onClick={addCardHandler}>카드 추가</Button>}
                 </Row>
-                <Row gutter={[16,16]}>
+                <Row style={{marginTop: '50px'}} gutter={[16,16]}>
                     <Col>[ 배송 주소 ]</Col>
                     {!addressPopup && 
                             <table>
