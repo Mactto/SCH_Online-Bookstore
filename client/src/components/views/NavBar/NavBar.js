@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RightMenu from './Sections/RightMenu';
+import AdminRightMenu from './Sections/AdminRightMenu';
 import { Drawer, Button, Icon } from 'antd';
+import { auth } from '../../../_actions/user_actions';
+import { useSelector, useDispatch } from "react-redux";
 import './Sections/Navbar.css';
 
 function NavBar() {
-  const [visible, setVisible] = useState(false)
+  let user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+  const [admin, setAdmin] = useState(0);
+  
+  useEffect(() => {
+    dispatch(auth()).then(response => {
+      setAdmin(response.payload.role);
+    })
+  }, [])
 
   const showDrawer = () => {
     setVisible(true)
@@ -21,7 +33,12 @@ function NavBar() {
       </div>
       <div className="menu__container">
         <div className="menu_rigth">
-          <RightMenu mode="horizontal" />
+          <div>{console.log(admin)}</div>
+        {admin === 1 ?
+            <AdminRightMenu mode="horizontal" />
+          :
+            <RightMenu mode="horizontal" />
+        }
         </div>
         <Button
           className="menu__mobile-button"
