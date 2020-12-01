@@ -10,3 +10,4 @@ export const ADD_TO_CARD = 'add_to_card';
 export const ADD_TO_ADDRESS = 'add_to_address';
 export const CUSTOMER_WITHDRAWAL = 'customer_withdrawal';
 export const REMOVE_CARD_ITEM = 'remove_card_item';
+export const REMOVE_ADDR_ITEM = 'remove_addr_item';

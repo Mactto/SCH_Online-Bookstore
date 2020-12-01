@@ -11,6 +11,7 @@ import {
     ADD_TO_CARD,
     ADD_TO_ADDRESS,
     REMOVE_CARD_ITEM,
+    REMOVE_ADDR_ITEM,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -159,6 +160,18 @@ export function removeCardItem(num){
 
     return {
         type: REMOVE_CARD_ITEM,
+        payload: request,
+    }
+}
+
+export function removeAddrItem(zipcode){
+    const request = axios.get(`/api/users/removeFromAddr?zipcode=${zipcode}`)
+    .then(response => {
+        return response.data;
+    })
+
+    return {
+        type: REMOVE_ADDR_ITEM,
         payload: request,
     }
 }

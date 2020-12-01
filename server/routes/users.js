@@ -276,9 +276,26 @@ router.get('/removeFromCard', auth, (req, res) => {
             }
         },
         {new: true},
-        (err, userInfo) => {
+        (err, cardInfo) => {
             if (err) return res.status(400).json({success:false, err})
-            return res.status(200).json(userInfo.card)
+            return res.status(200).json(cardInfo.card)
+        }
+    )
+})
+
+router.get('/removeFromAddr', auth, (req, res) => {
+    // 먼저 cart 안에 내가 지우려고 한 상품을 지워주기
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            "$pull": {
+                "address": {"zipcode": req.query.zipcode},
+            }
+        },
+        {new: true},
+        (err, addrInfo) => {
+            if (err) return res.status(400).json({success:false, err})
+            return res.status(200).json(addrInfo.address)
         }
     )
 })

@@ -47,11 +47,11 @@ function CardPopup(props) {
                 <br />
                 <br />
                 <label>카드번호</label>
-                <Input onChange={cardNumHandler} value={cardNum}/>
+                <Input type="number" onChange={cardNumHandler} value={cardNum}/>
                 <br />
                 <br />
                 <label>유효기간</label>
-                <Input onChange={validityHandler} value={validity}/>
+                <Input type="number" onChange={validityHandler} value={validity}/>
                 <br />
                 <br />
                 <select onChange={cardKindHanlder}>
@@ -61,9 +61,9 @@ function CardPopup(props) {
                 </select>
                 <br />
                 <br />
-                <button type="submit">
+                <Button type="submit">
                     추가하기
-                </button>
+                </Button>
             </Form>
         </div>
     )
