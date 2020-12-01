@@ -193,7 +193,8 @@ router.post('/successBuy', auth, (req, res) => {
                         {_id: item.id},
                         {
                             $inc: {
-                                "sold" : item.quantity
+                                "sold" : item.quantity,
+                                "inventory": -(item.quantity)
                             }
                         },
                         {new: false},

@@ -16,8 +16,9 @@ function HistoryPage(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>구매 고유 번호</th>
-                        <th>결제금약</th>
+                        <th>번호</th>
+                        <th>상품이름</th>
+                        <th>결제금액</th>
                         <th>주문수량</th>
                         <th>주문일자</th>
                         <th>주문상태</th>
@@ -26,9 +27,10 @@ function HistoryPage(props) {
                 </thead>
                 <tbody>
                     {props.user.userData && 
-                    props.user.userData.history.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
+                    props.user.userData.history.map((item, index) => (
+                        <tr key={index}>
+                            <td>{index}</td>
+                            <td>{item.name}</td>
                             <td>{item.price}</td>
                             <td>{item.quantity}</td>
                             <td>{item.dateOfPurchase}</td>

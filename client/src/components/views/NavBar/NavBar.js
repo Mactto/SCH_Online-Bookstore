@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import RightMenu from './Sections/RightMenu';
-import AdminRightMenu from './Sections/AdminRightMenu';
 import { Drawer, Button, Icon } from 'antd';
 import { auth } from '../../../_actions/user_actions';
 import { useSelector, useDispatch } from "react-redux";
@@ -10,11 +9,11 @@ function NavBar() {
   let user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
-  const [admin, setAdmin] = useState(0);
+  const [admin, setAdmin] = useState(false);
   
   useEffect(() => {
     dispatch(auth()).then(response => {
-      setAdmin(response.payload.role);
+      setAdmin(response.payload.isAdmin);
     })
   }, [])
 
@@ -33,12 +32,7 @@ function NavBar() {
       </div>
       <div className="menu__container">
         <div className="menu_rigth">
-          <div>{console.log(admin)}</div>
-        {admin === 1 ?
-            <AdminRightMenu mode="horizontal" />
-          :
             <RightMenu mode="horizontal" />
-        }
         </div>
         <Button
           className="menu__mobile-button"
