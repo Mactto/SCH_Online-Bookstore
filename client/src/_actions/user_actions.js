@@ -10,6 +10,7 @@ import {
     ON_SUCCESS_BUY,
     ADD_TO_CARD,
     ADD_TO_ADDRESS,
+    REMOVE_CARD_ITEM,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -146,6 +147,18 @@ export function addToAddress(addressInfo) {
 
     return {
         type: ADD_TO_ADDRESS,
+        payload: request,
+    }
+}
+
+export function removeCardItem(num){
+    const request = axios.get(`/api/users/removeFromCard?num=${num}`)
+    .then(response => {
+        return response.data;
+    })
+
+    return {
+        type: REMOVE_CARD_ITEM,
         payload: request,
     }
 }

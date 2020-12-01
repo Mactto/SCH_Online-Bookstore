@@ -11,14 +11,13 @@ const async = require('async');
 //=================================
 
 router.get("/auth", auth, (req, res) => {
+    console.log(req)
     res.status(200).json({
         _id: req.user._id,
         isAdmin: req.user.role === 0 ? false : true,
         isAuth: true,
         email: req.user.email,
         name: req.user.name,
-        lastname: req.user.lastname,
-        role: req.user.role,
         image: req.user.image,
         cart: req.user.cart,
         card: req.user.card,
@@ -28,7 +27,6 @@ router.get("/auth", auth, (req, res) => {
 });
 
 router.post("/register", (req, res) => {
-
     const user = new User(req.body);
 
     user.save((err, doc) => {
@@ -253,16 +251,36 @@ router.post("/addToAddress", auth, (req, res) => {
     )
 });
 
-/* 수취 완료시 작업
-                Product.findOneAndUpdate(
-                    {_id: req.body.productId},
-                    {$inc: {"inventory" : -1}},
-                    {$inc: {"sold" : 1}},
-                    {new:true},
-                    (err, userInfo) => {
-                        if (err) return res.status(400).json({success:false, err})
-                    }
-                )
-*/
+router.get("/withdrawal", auth, (req, res) => {
+    User.findOneAndUpdate({ _id: req.user._id }, { token: "", tokenExp: "" }, (err, doc) => {
+        if (err) return res.json({ success: false, err });
+        User.remove({_id: req.user._id},
+            (err, respronse) => {
+                if (err) return res.json({ success: false, err });
+                return res.status(200).send({
+                    success: true
+                });
+            }
+        )
+    });
+})
+
+router.get('/removeFromCard', auth, (req, res) => {
+    // 먼저 cart 안에 내가 지우려고 한 상품을 지워주기
+    console.log(req.query.num);
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            "$pull": {
+                "card": {"num": req.query.num},
+            }
+        },
+        {new: true},
+        (err, userInfo) => {
+            if (err) return res.status(400).json({success:false, err})
+            return res.status(200).json(userInfo.card)
+        }
+    )
+})
 
 module.exports = router;

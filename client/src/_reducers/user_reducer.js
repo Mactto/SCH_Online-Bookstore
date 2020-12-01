@@ -9,6 +9,7 @@ import {
     ON_SUCCESS_BUY,
     ADD_TO_CARD,
     ADD_TO_ADDRESS,
+    REMOVE_CARD_ITEM,
 } from '../_actions/types';
  
 
@@ -34,6 +35,8 @@ export default function(state={},action){
             return {...state, userData: {...state.userData, card: action.payload}}
         case ADD_TO_ADDRESS:
             return {...state, userData: {...state.userData, address: action.payload}}
+        case REMOVE_CARD_ITEM:
+            return {...state, userData: {...state.userData, card: action.payload}}
         default:
             return state;
     }
