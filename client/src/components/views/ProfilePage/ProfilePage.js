@@ -164,7 +164,7 @@ function ProfilePage(props) {
                     {addressPopup ? <AddressPopup func={addressPopupHandler}/> : <Button type="primary" onClick={addAddressHandler}>배송지 추가</Button>}
                 </Row>
                 <Row style={{marginTop: '50px'}} gutter={[16,16]}>
-                    <Button style={{backgroundColor: 'red', color: 'white'}} onClick={withdrawal}>
+                    <Button type="danger" onClick={withdrawal}>
                         회원탈퇴
                     </Button>
                 </Row>

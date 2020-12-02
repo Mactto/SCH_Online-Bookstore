@@ -28,7 +28,7 @@ function NavBar() {
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
-        <a href="/">순천향대 온라인 서점</a>
+        <a href="/">순천향대학교 온라인 서점</a>
       </div>
       <div className="menu__container">
         <div className="menu_rigth">

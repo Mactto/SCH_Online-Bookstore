@@ -11,6 +11,10 @@ function ProductInfo(props) {
         dispatch(addToCart({id: props.detail._id, count: orderNum}))
     }
 
+    const buyHandler = () => {
+        console.log('buy');
+    }
+
     const upHandler = () => {
         setOrderNum(orderNum+1);
     }
@@ -47,9 +51,17 @@ function ProductInfo(props) {
             <br />
             
             <div style={{display:'flex', justifyContent: 'center'}}>
-                <Button size="large" shape="round" type="danger" onClick={clickHandler}>
-                    Add to Cart
-                </Button>
+                <div style={{marginRight: '10px'}}>
+                    <Button size="large" shape="round" type="primary" onClick={buyHandler}>
+                        구매하기
+                    </Button>
+                </div>
+
+                <div style={{marginLeft: '10px'}}>
+                    <Button size="large" shape="round" type="danger" onClick={clickHandler}>
+                        장바구니
+                    </Button>
+                </div>
             </div>
         </div>
     )
