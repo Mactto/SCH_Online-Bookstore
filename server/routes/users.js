@@ -11,7 +11,6 @@ const async = require('async');
 //=================================
 
 router.get("/auth", auth, (req, res) => {
-    console.log(req)
     res.status(200).json({
         _id: req.user._id,
         isAdmin: req.user.role === 0 ? false : true,
@@ -299,5 +298,25 @@ router.get('/removeFromAddr', auth, (req, res) => {
         }
     )
 })
+
+router.post('/changeUserInfo', auth, (req, res) => {
+    // 먼저 cart 안에 내가 지우려고 한 상품을 지워주기
+    console.log(req);
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {
+            $set: {
+                "email": req.body.email,
+                "name": req.body.name,
+            }
+        },
+        {new: true},
+        (err, userData) => {
+            if (err) return res.status(400).json({success:false, err})
+            return res.status(200).json({name: userData.name, email: userData.email});
+        }
+    )
+})
+
 
 module.exports = router;

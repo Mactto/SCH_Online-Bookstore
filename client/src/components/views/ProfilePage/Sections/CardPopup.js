@@ -61,9 +61,9 @@ function CardPopup(props) {
                 </select>
                 <br />
                 <br />
-                <Button type="submit">
+                <button type="submit">
                     추가하기
-                </Button>
+                </button>
             </Form>
         </div>
     )

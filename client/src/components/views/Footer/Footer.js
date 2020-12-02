@@ -8,7 +8,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Happy Coding  <Icon type="smile" /></p>
+           <p> 순천향대학교 컴퓨터공학과 20184067 최세환 <Icon type="smile" /></p>
         </div>
     )
 }

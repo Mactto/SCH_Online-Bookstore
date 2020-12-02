@@ -12,6 +12,7 @@ import {
     ADD_TO_ADDRESS,
     REMOVE_CARD_ITEM,
     REMOVE_ADDR_ITEM,
+    CHANGE_USER_INFO,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -153,7 +154,7 @@ export function addToAddress(addressInfo) {
 }
 
 export function removeCardItem(num){
-    const request = axios.get(`/api/users/removeFromCard?num=${num}`)
+    const request = axios.get(`${USER_SERVER}/removeFromCard?num=${num}`)
     .then(response => {
         return response.data;
     })
@@ -165,13 +166,26 @@ export function removeCardItem(num){
 }
 
 export function removeAddrItem(zipcode){
-    const request = axios.get(`/api/users/removeFromAddr?zipcode=${zipcode}`)
+    const request = axios.get(`${USER_SERVER}/removeFromAddr?zipcode=${zipcode}`)
     .then(response => {
         return response.data;
     })
 
     return {
         type: REMOVE_ADDR_ITEM,
+        payload: request,
+    }
+}
+
+export function changeUserInfo(info){
+    const request = axios.post(`${USER_SERVER}/changeUserInfo`, info)
+    .then(response => {
+        console.log(response);
+        return response.data;
+    })
+
+    return {
+        type: CHANGE_USER_INFO,
         payload: request,
     }
 }
