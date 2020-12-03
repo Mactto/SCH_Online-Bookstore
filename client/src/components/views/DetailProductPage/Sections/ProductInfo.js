@@ -2,17 +2,19 @@ import React, {useState} from 'react';
 import { Button, Descriptions, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../../_actions/user_actions';
+import Payment from '../../../utils/Payment';
 
 function ProductInfo(props) {
     const dispatch = useDispatch();
     const [orderNum, setOrderNum] = useState(1);
+    const [buy, setBuy] = useState(false);
+
+    const buyHandler = () => {
+        setBuy(true);
+    }
 
     const clickHandler = () => {
         dispatch(addToCart({id: props.detail._id, count: orderNum}))
-    }
-
-    const buyHandler = () => {
-        console.log('buy');
     }
 
     const upHandler = () => {
@@ -46,6 +48,12 @@ function ProductInfo(props) {
                 </div>
             </div>
 
+            <br />
+            <br />
+            <br />
+            
+            {buy ? <Payment /> : null}
+            
             <br />
             <br />
             <br />
