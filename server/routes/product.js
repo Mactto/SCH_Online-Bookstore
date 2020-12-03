@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { Product } = require('../models/Product');
+const { Payment } = require('../models/Payment');
 
 //=================================
 //             Product
@@ -100,6 +101,14 @@ router.get('/product_by_id', (req, res) => {
     .exec((err, product) => {
         if(err) return res.status(400).send({success: false, err});
         return res.status(200).send(product);
+    })
+});
+
+router.get('/payment', (req, res) => {
+    Payment.find({})
+    .exec((err, payment) => {
+        if(err) return res.status(400).send({success: false, err});
+        return res.status(200).send(payment);
     })
 });
 

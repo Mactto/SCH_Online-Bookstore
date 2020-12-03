@@ -13,6 +13,9 @@ import {
     REMOVE_CARD_ITEM,
     REMOVE_ADDR_ITEM,
     CHANGE_USER_INFO,
+    GET_PAYMENT_ITEM,
+    CHANGE_ORDER_STATE,
+
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -186,6 +189,30 @@ export function changeUserInfo(info){
 
     return {
         type: CHANGE_USER_INFO,
+        payload: request,
+    }
+}
+
+export function getPaymentItem() {
+    const request = axios.get('/api/product/payment')
+    .then(response => {
+        return response.data;
+    });
+
+    return {
+        type: GET_PAYMENT_ITEM,
+        payload: request,
+    }
+}
+
+export function changeOrderState(info) {
+    const request = axios.post(`${USER_SERVER}/changeOrderState`, info)
+    .then(response => {
+        return response.data;
+    });
+
+    return {
+        type: CHANGE_ORDER_STATE,
         payload: request,
     }
 }

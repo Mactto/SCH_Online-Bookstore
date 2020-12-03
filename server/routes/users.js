@@ -318,5 +318,30 @@ router.post('/changeUserInfo', auth, (req, res) => {
     )
 })
 
+router.post('/changeOrderState', auth, (req, res) => {
+
+    //주문 승인 처리
+
+    //-> mongodb 쿼리문 처리 changeorderstate
+
+    // 먼저 cart 안에 내가 지우려고 한 상품을 지워주기
+    User.findOneAndUpdate(
+        {_id: req.body.userId},
+        {
+            "history": {
+                "id": req.body.productId, 
+                $set: {
+                    "state": true,
+                }
+            }
+        },
+        {new: true},
+        (err, userData) => {
+            console.log(userData);
+            //if (err) return res.status(400).json({success:false, err})
+            //return res.status(200).json(userData);
+        }
+    )
+})
 
 module.exports = router;

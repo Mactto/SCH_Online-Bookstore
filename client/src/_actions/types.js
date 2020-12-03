@@ -12,3 +12,5 @@ export const CUSTOMER_WITHDRAWAL = 'customer_withdrawal';
 export const REMOVE_CARD_ITEM = 'remove_card_item';
 export const REMOVE_ADDR_ITEM = 'remove_addr_item';
 export const CHANGE_USER_INFO = 'change_user_info';
+export const GET_PAYMENT_ITEM = 'get_payment_item';
+export const CHANGE_ORDER_STATE = 'change_order_state';
