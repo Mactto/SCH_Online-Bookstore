@@ -154,7 +154,6 @@ router.post('/successBuy', auth, (req, res) => {
             price: item.price,
             quantity: item.quantity,
             paymentId: req.body.paymentData.paymentId,
-            state: false,
         })
     })
 
@@ -166,8 +165,10 @@ router.post('/successBuy', auth, (req, res) => {
         card: req.body.info.cardInfo,
         address: req.body.info.addrInfo
     }
+
     transactionData.data = req.body.paymentData;
     transactionData.product = history;
+    transactionData.state = false;
 
     User.findOneAndUpdate(
         {_id: req.user._id},
@@ -300,12 +301,10 @@ router.get('/removeFromAddr', auth, (req, res) => {
 })
 
 router.post('/changeUserInfo', auth, (req, res) => {
-    // 먼저 cart 안에 내가 지우려고 한 상품을 지워주기
-    console.log(req);
     User.findOneAndUpdate(
         {_id: req.user._id},
         {
-            $set: {
+            "$set": {
                 "email": req.body.email,
                 "name": req.body.name,
             }
@@ -314,32 +313,6 @@ router.post('/changeUserInfo', auth, (req, res) => {
         (err, userData) => {
             if (err) return res.status(400).json({success:false, err})
             return res.status(200).json({name: userData.name, email: userData.email});
-        }
-    )
-})
-
-router.post('/changeOrderState', auth, (req, res) => {
-
-    //주문 승인 처리
-
-    //-> mongodb 쿼리문 처리 changeorderstate
-
-    // 먼저 cart 안에 내가 지우려고 한 상품을 지워주기
-    User.findOneAndUpdate(
-        {_id: req.body.userId},
-        {
-            "history": {
-                "id": req.body.productId, 
-                $set: {
-                    "state": true,
-                }
-            }
-        },
-        {new: true},
-        (err, userData) => {
-            console.log(userData);
-            //if (err) return res.status(400).json({success:false, err})
-            //return res.status(200).json(userData);
         }
     )
 })

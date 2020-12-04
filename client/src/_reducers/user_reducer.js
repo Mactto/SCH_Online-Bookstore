@@ -48,7 +48,7 @@ export default function(state={},action){
         case GET_PAYMENT_ITEM:
             return {...state, paymentDetail: action.payload}
         case CHANGE_ORDER_STATE:
-            return {...state, paymentDetail: action.payload}
+            return {...state, paymentDetail: {...state.paymentDetail, ack: action.payload.ack}}
         default:
             return state;
     }

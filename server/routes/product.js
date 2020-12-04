@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const { Product } = require('../models/Product');
 const { Payment } = require('../models/Payment');
+const { Mongoose } = require('mongoose');
 
 //=================================
 //             Product
@@ -110,6 +111,18 @@ router.get('/payment', (req, res) => {
         if(err) return res.status(400).send({success: false, err});
         return res.status(200).send(payment);
     })
+});
+
+router.post('/changeOrderState', (req, res) => {
+    Payment.findOneAndUpdate(
+        {_id: req.body.paymentId},
+        {$set: {'ack': true}},
+        {new: true},
+        (err, payment) => {
+            if (err) return res.status(400).send({success: false, err});
+            return res.status(200).send(payment);
+        }
+    )
 });
 
 module.exports = router;

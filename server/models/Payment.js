@@ -13,6 +13,10 @@ const paymentSchema = mongoose.Schema({
     product: {
         type: Array,
         default: [],
+    },
+    ack: {
+        type: Boolean,
+        default: false,
     }
 })
 

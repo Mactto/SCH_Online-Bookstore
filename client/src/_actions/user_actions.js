@@ -206,7 +206,7 @@ export function getPaymentItem() {
 }
 
 export function changeOrderState(info) {
-    const request = axios.post(`${USER_SERVER}/changeOrderState`, info)
+    const request = axios.post('/api/product/changeOrderState', info)
     .then(response => {
         return response.data;
     });

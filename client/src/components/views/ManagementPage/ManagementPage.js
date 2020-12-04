@@ -15,7 +15,7 @@ function ManagementPage(props) {
     const stateHandler = (e) => {
         let body = {
             paymentId: list[e.currentTarget.value]._id,
-            userId: list[e.currentTarget.value].user[0].id,
+            productId: list[e.currentTarget.value].product[0].id,
         }
         dispatch(changeOrderState(body))
         .then(response => setList(response));
@@ -35,14 +35,14 @@ function ManagementPage(props) {
                     </tr>    
                 </thead>
                 <tbody>
-                {list.map((item, index) => (
+                {list && list.map((item, index) => (
                     <tr key={index}>
                         <td>{index}</td>
                         <td>{item._id}</td>
                         <td>{item.user[0].id}</td>
                         <td>{item.product[0].id}</td>
                         <td>{item.product[0].price * item.product[0].quantity}</td>
-                        <td>{item.product[0].state ? <div>승인완료</div> : <Button type="primary" value={index} onClick={stateHandler}>승인</Button>}</td>
+                        <td>{item.ack ? <div>승인완료</div> : <Button type="primary" value={index} onClick={stateHandler}>승인</Button>}</td>
                     </tr>
                 ))}
                 </tbody>

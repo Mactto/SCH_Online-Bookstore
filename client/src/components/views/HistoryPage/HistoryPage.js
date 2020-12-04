@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import {Button} from 'antd';
 
 function HistoryPage(props) {
-    const getHandler = (e) => {
-        console.log(e.currentTarget.key)
+    const [acked, setAcked] = useState(false);
+    const getHandler = () => {
+        setAcked(true);
     }
 
     return (
         <div style={{width:'80%', margin: '3rem auto'}}>
             <div style={{textAlign: 'center'}}>
-                <h1>History</h1>
+                <h1>결제내역</h1>
             </div>
             <br />
 
@@ -33,7 +34,14 @@ function HistoryPage(props) {
                             <td>{item.price}</td>
                             <td>{item.quantity}</td>
                             <td>{item.dateOfPurchase}</td>
-                            <td>{item.state ? <div>판매완료</div> : <Button onClick={getHandler}>수취완료</Button>}</td>
+                            <td>{item.ack ? 
+                                acked ? 
+                                    <div>판매완료</div>
+                                    :
+                                    <Button onClick={getHandler}>수취완료</Button> 
+                                : 
+                                <div>승인대기중</div>}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
