@@ -15,14 +15,15 @@ function ManagementPage(props) {
     const stateHandler = (e) => {
         let body = {
             paymentId: list[e.currentTarget.value]._id,
-            productId: list[e.currentTarget.value].product[0].id,
         }
+        console.log(body);
         dispatch(changeOrderState(body))
-        .then(response => setList(response));
+        .then(response => setList(response.payload));
     }
 
     return (
         <div style={{width: '80%', marginLeft: '10%', marginTop: '5%'}}>
+            <div>{console.log(list)}</div>
             <table>
                 <thead>
                     <tr>

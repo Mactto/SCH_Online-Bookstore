@@ -196,6 +196,7 @@ export function changeUserInfo(info){
 export function getPaymentItem() {
     const request = axios.get('/api/product/payment')
     .then(response => {
+        console.log(response);
         return response.data;
     });
 
@@ -208,6 +209,7 @@ export function getPaymentItem() {
 export function changeOrderState(info) {
     const request = axios.post('/api/product/changeOrderState', info)
     .then(response => {
+        console.log(response);
         return response.data;
     });
 

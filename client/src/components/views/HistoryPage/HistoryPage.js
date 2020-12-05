@@ -26,6 +26,7 @@ function HistoryPage(props) {
                     </tr>
                 </thead>
                 <tbody>
+                    <div>{console.log(props.user.userData)}</div>
                     {props.user.userData && 
                     props.user.userData.history.map((item, index) => (
                         <tr key={index}>

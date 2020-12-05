@@ -108,6 +108,7 @@ router.get('/product_by_id', (req, res) => {
 router.get('/payment', (req, res) => {
     Payment.find({})
     .exec((err, payment) => {
+        console.log(payment);
         if(err) return res.status(400).send({success: false, err});
         return res.status(200).send(payment);
     })
@@ -119,8 +120,12 @@ router.post('/changeOrderState', (req, res) => {
         {$set: {'ack': true}},
         {new: true},
         (err, payment) => {
-            if (err) return res.status(400).send({success: false, err});
-            return res.status(200).send(payment);
+            Payment.find({})
+            .exec((err, payment) => {
+                console.log(payment);
+                if(err) return res.status(400).send({success: false, err});
+                return res.status(200).send(payment);
+            })
         }
     )
 });
