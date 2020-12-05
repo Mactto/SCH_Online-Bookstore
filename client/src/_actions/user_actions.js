@@ -15,7 +15,7 @@ import {
     CHANGE_USER_INFO,
     GET_PAYMENT_ITEM,
     CHANGE_ORDER_STATE,
-
+    GET_USER_PAYMENT_ITEM,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -206,13 +206,23 @@ export function getPaymentItem() {
     }
 }
 
+export function getUserPaymentItem(info) {
+    const request = axios.post('/api/product/payment', info)
+    .then(response => {
+        return response.data;
+    });
+    
+    return {
+        type: GET_USER_PAYMENT_ITEM,
+        payload: request,
+    }
+}
+
 export function changeOrderState(info) {
     const request = axios.post('/api/product/changeOrderState', info)
     .then(response => {
-        console.log(response);
         return response.data;
     });
-
     return {
         type: CHANGE_ORDER_STATE,
         payload: request,

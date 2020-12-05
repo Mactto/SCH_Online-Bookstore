@@ -170,45 +170,46 @@ router.post('/successBuy', auth, (req, res) => {
     transactionData.product = history;
     transactionData.state = false;
 
-    User.findOneAndUpdate(
-        {_id: req.user._id},
-        {$push: {history: history}, $set: {cart: []}},
-        {new: true},
-        (err, user) => {
-            if (err) return res.json({success:false, err});
-            const payment = new Payment(transactionData);
-            payment.save((err, doc) => {
-                if (err) return res.json({success: false, err})
-                
-                // 3. Product Collection 안에 있는 sold 필드 정보 업데이트 시켜주기
-                let products = [];
-                doc.product.forEach(item => {
-                    products.push({id: item.id, quantity: item.quantity})
-                })
+    const payment = new Payment(transactionData);
+    payment.save((err, doc) => {
+        console.log(payment.id);
+        if (err) return res.json({success: false, err})
+        User.findOneAndUpdate(
+            {_id: req.user._id},
+            {$push: {history: payment._id}, $set: {cart: []}},
+            {new: true},
+            (err, user) => {
+                if (err) return res.json({success:false, err});
+            }
+        )
 
-                async.eachSeries(products, (item, callback) => {
-                    Product.update(
-                        {_id: item.id},
-                        {
-                            $inc: {
-                                "sold" : item.quantity,
-                                "inventory": -(item.quantity)
-                            }
-                        },
-                        {new: false},
-                        callback
-                    )
-                }, (err) => {
-                    if(err) return res.status(400).json({success:false, err})
-                    return res.status(200).json({
-                        success:true,
-                        cart: user.cart,
-                        cartDetail: []
-                    })
-                })
+        // 3. Product Collection 안에 있는 sold 필드 정보 업데이트 시켜주기
+        let products = [];
+        doc.product.forEach(item => {
+            products.push({id: item.id, quantity: item.quantity})
+        })
+
+        async.eachSeries(products, (item, callback) => {
+            Product.update(
+                {_id: item.id},
+                {
+                    $inc: {
+                        "sold" : item.quantity,
+                        "inventory": -(item.quantity)
+                    }
+                },
+                {new: false},
+                callback
+            )
+        }, (err) => {
+            if(err) return res.status(400).json({success:false, err})
+            return res.status(200).json({
+                success:true,
+                cart: [],
+                cartDetail: []
             })
-        }
-    )
+        })
+    })
 })
 
 router.post("/addToCard", auth, (req, res) => {

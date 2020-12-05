@@ -14,3 +14,4 @@ export const REMOVE_ADDR_ITEM = 'remove_addr_item';
 export const CHANGE_USER_INFO = 'change_user_info';
 export const GET_PAYMENT_ITEM = 'get_payment_item';
 export const CHANGE_ORDER_STATE = 'change_order_state';
+export const GET_USER_PAYMENT_ITEM = 'get_user_payment_item';

@@ -52,12 +52,6 @@ function ProductInfo(props) {
             <br />
             <br />
             
-            {buy ? <Payment /> : null}
-            
-            <br />
-            <br />
-            <br />
-            
             <div style={{display:'flex', justifyContent: 'center'}}>
                 <div style={{marginRight: '10px'}}>
                     <Button size="large" shape="round" type="primary" onClick={buyHandler}>

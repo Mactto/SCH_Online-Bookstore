@@ -13,6 +13,7 @@ import {
     REMOVE_ADDR_ITEM,
     CHANGE_USER_INFO,
     GET_PAYMENT_ITEM,
+    GET_USER_PAYMENT_ITEM,
     CHANGE_ORDER_STATE,
 } from '../_actions/types';
  
@@ -47,6 +48,8 @@ export default function(state={},action){
             return {...state, userData: {...state.userData, name: action.payload.name, email: action.payload.email}}
         case GET_PAYMENT_ITEM:
             return {...state, paymentDetail: action.payload}
+        case GET_USER_PAYMENT_ITEM:
+            return {...state, userData: {...state.userData, paymentData: action.payload}}
         case CHANGE_ORDER_STATE:
             return {...state, paymentDetail: action.payload}
         default:

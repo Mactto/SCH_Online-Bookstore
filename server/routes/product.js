@@ -114,6 +114,17 @@ router.get('/payment', (req, res) => {
     })
 });
 
+router.post('/payment', (req, res) => {
+    Payment.find(
+        {_id: req.body.history},
+        (err, payment) => {
+            console.log(payment);
+            if(err) return res.status(400).send({success: false, err});
+            return res.status(200).send(payment);
+        }
+    )
+});
+
 router.post('/changeOrderState', (req, res) => {
     Payment.findOneAndUpdate(
         {_id: req.body.paymentId},
