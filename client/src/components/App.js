@@ -12,7 +12,9 @@ import DetailProductPage from "./views/DetailProductPage/DetailProductPage";
 import CartPage from "./views/CartPage/CartPage";
 import HistoryPage from "./views/HistoryPage/HistoryPage";
 import ProfilePage from "./views/ProfilePage/ProfilePage";
-import ManagementPage from "./views/ManagementPage/ManagementPage";
+import ProductManagementPage from "./views/ManagementPage/ProductManagementPage";
+import PaymentManagementPage from "./views/ManagementPage/PaymentManagementPage";
+import CustomerManagementPage from "./views/ManagementPage/CustomerManagementPage";
 
 //null   Anyone Can go inside
 //true   only logged in user can go inside
@@ -32,7 +34,9 @@ function App() {
           <Route exact path="/user/cart" component={Auth(CartPage, true)} />
           <Route exact path="/history" component={Auth(HistoryPage, true)} />
           <Route exact path="/user/profile" component={Auth(ProfilePage, true)} />
-          <Route exact path="/management" component={Auth(ManagementPage, true)} />
+          <Route exact path="/management/product" component={Auth(ProductManagementPage, true)} />
+          <Route exact path="/management/payment" component={Auth(PaymentManagementPage, true)} />
+          <Route exact path="/management/customer" component={Auth(CustomerManagementPage, true)} />
         </Switch>
       </div>
       <Footer />

@@ -99,7 +99,7 @@ router.post("/addToCart", auth, (req, res) => {
                             cart: {
                                 id: req.body.productId,
                                 quantity: req.body.count,
-                                data: Date.now()
+                                data: Date.now("<YYYY-mm-dd>")
                             }
                         }
                     },
@@ -194,7 +194,7 @@ router.post('/successBuy', auth, (req, res) => {
                 {_id: item.id},
                 {
                     $inc: {
-                        "sold" : item.quantity,
+                        "sold" : 1,
                         "inventory": -(item.quantity)
                     }
                 },
@@ -317,5 +317,13 @@ router.post('/changeUserInfo', auth, (req, res) => {
         }
     )
 })
+
+router.get('/user', (req, res) => {
+    User.find({})
+    .exec((err, users) => {
+        if(err) return res.status(400).send({success: false, err});
+        return res.status(200).send(users);
+    })
+});
 
 module.exports = router;

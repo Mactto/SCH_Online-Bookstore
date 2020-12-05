@@ -6,6 +6,7 @@ import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
+const { SubMenu } = Menu;
 
 function RightMenu(props) {
   const user = useSelector(state => state.user)
@@ -35,9 +36,11 @@ function RightMenu(props) {
     if (user.userData && user.userData.isAdmin) {
       return (
         <Menu mode={props.mode}>
-          <Menu.Item key="management">
-            <a href="/management">Management</a>
-          </Menu.Item>
+          <SubMenu title={<span>Management</span>}>
+              <Menu.Item key="1"><a href="/management/payment">결제승인관리</a></Menu.Item>
+              <Menu.Item key="2"><a href="/management/customer">회원관리</a></Menu.Item>
+              <Menu.Item key="2"><a href="/management/product">상품관리</a></Menu.Item>
+          </SubMenu>
           <Menu.Item key="upload">
             <a href='/product/upload'>Upload</a>
           </Menu.Item>

@@ -12,10 +12,13 @@ import {
     ADD_TO_ADDRESS,
     REMOVE_CARD_ITEM,
     REMOVE_ADDR_ITEM,
+    REMOVE_PRODUCT,
     CHANGE_USER_INFO,
     GET_PAYMENT_ITEM,
     CHANGE_ORDER_STATE,
     GET_USER_PAYMENT_ITEM,
+    GET_ALL_PRODUCT,
+    GET_ALL_USER,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -180,6 +183,18 @@ export function removeAddrItem(zipcode){
     }
 }
 
+export function removeProduct(id){
+    const request = axios.post('/api/product/removeProduct', id)
+    .then(response => {
+        return response.data;
+    })
+
+    return {
+        type: REMOVE_PRODUCT,
+        payload: request,
+    }
+}
+
 export function changeUserInfo(info){
     const request = axios.post(`${USER_SERVER}/changeUserInfo`, info)
     .then(response => {
@@ -196,7 +211,6 @@ export function changeUserInfo(info){
 export function getPaymentItem() {
     const request = axios.get('/api/product/payment')
     .then(response => {
-        console.log(response);
         return response.data;
     });
 
@@ -225,6 +239,28 @@ export function changeOrderState(info) {
     });
     return {
         type: CHANGE_ORDER_STATE,
+        payload: request,
+    }
+}
+
+export function getAllProduct() {
+    const request = axios.get('/api/product/product')
+    .then(response => {
+        return response.data;
+    });
+    return {
+        type: GET_ALL_PRODUCT,
+        payload: request,
+    }
+}
+
+export function getAllUser() {
+    const request = axios.get(`${USER_SERVER}/user`)
+    .then(response => {
+        return response.data;
+    });
+    return {
+        type: GET_ALL_USER,
         payload: request,
     }
 }

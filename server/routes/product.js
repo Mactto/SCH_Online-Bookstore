@@ -108,7 +108,6 @@ router.get('/product_by_id', (req, res) => {
 router.get('/payment', (req, res) => {
     Payment.find({})
     .exec((err, payment) => {
-        console.log(payment);
         if(err) return res.status(400).send({success: false, err});
         return res.status(200).send(payment);
     })
@@ -118,7 +117,6 @@ router.post('/payment', (req, res) => {
     Payment.find(
         {_id: req.body.history},
         (err, payment) => {
-            console.log(payment);
             if(err) return res.status(400).send({success: false, err});
             return res.status(200).send(payment);
         }
@@ -128,7 +126,7 @@ router.post('/payment', (req, res) => {
 router.post('/changeOrderState', (req, res) => {
     Payment.findOneAndUpdate(
         {_id: req.body.paymentId},
-        {$set: {'ack': true}},
+        {$inc: {'ack': 1}},
         {new: true},
         (err, payment) => {
             Payment.find({})
@@ -140,5 +138,23 @@ router.post('/changeOrderState', (req, res) => {
         }
     )
 });
+
+router.get('/product', (req, res) => {
+    Product.find({})
+    .exec((err, products) => {
+        if(err) return res.status(400).send({success: false, err});
+        return res.status(200).send(products);
+    })
+});
+
+router.post('/removeProduct', (req, res) => {
+    console.log(req.body.productId);
+    Product.remove({_id: req.body.productId})
+    .exec((err, products) => {
+        if(err) return res.status(400).send({success: false, err});
+        return res.status(200).send(products);
+    })
+});
+
 
 module.exports = router;

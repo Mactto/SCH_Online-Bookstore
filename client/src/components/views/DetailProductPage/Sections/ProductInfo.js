@@ -39,7 +39,7 @@ function ProductInfo(props) {
             <br />
             <br />
             <br />
-
+            
             <div style={{display:'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <div>주문수량 : <Input style={{width: 100}} value={orderNum}/></div>
                 <div style={{display:'flex', flexDirection: 'column'}}>

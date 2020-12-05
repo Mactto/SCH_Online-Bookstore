@@ -3,47 +3,50 @@ import { useDispatch } from 'react-redux';
 import { getPaymentItem, changeOrderState } from '../../../_actions/user_actions';
 import { Button } from 'antd';
 
-function ManagementPage(props) {
+function PaymentManagementPage(props) {
     const dispatch = useDispatch();
-    const [list, setList] = useState([]);
 
     useEffect(() => {
         dispatch(getPaymentItem())
-        .then(response => setList(response.payload));
-    }, [])
+    }, [props.user.userData])
 
     const stateHandler = (e) => {
         let body = {
-            paymentId: list[e.currentTarget.value]._id,
+            paymentId: e.currentTarget.value,
         }
-        console.log(body);
         dispatch(changeOrderState(body))
-        .then(response => setList(response.payload));
+    }
+
+    const calTotalPrice = (index) => {
+        let total = 0;
+        props.user.paymentDetail[index].product.map(item => {
+            total += item.price * item.quantity;
+        })
+        return total;
     }
 
     return (
         <div style={{width: '80%', marginLeft: '10%', marginTop: '5%'}}>
-            <div>{console.log(list)}</div>
             <table>
                 <thead>
                     <tr>
                         <td>번호</td>
                         <td>결제코드</td>
                         <td>결제유저</td>
-                        <td>상품코드</td>
                         <td>결제금액</td>
                         <td>주문승인</td>
                     </tr>    
                 </thead>
                 <tbody>
-                {list && list.map((item, index) => (
+                {props.user.paymentDetail && props.user.paymentDetail.map((item, index) => (
                     <tr key={index}>
                         <td>{index}</td>
                         <td>{item._id}</td>
                         <td>{item.user[0].id}</td>
-                        <td>{item.product[0].id}</td>
-                        <td>{item.product[0].price * item.product[0].quantity}</td>
-                        <td>{item.ack ? <div>승인완료</div> : <Button type="primary" value={index} onClick={stateHandler}>승인</Button>}</td>
+                        <td>{calTotalPrice(index)}</td>
+                        {item.ack === 0 && <td><Button type="primary" value={item._id} onClick={stateHandler}>승인</Button></td>}
+                        {item.ack === 1 && <td>{'승인완료'}</td>}
+                        {item.ack === 2 && <td>{'판매완료'}</td>}
                     </tr>
                 ))}
                 </tbody>
@@ -52,4 +55,4 @@ function ManagementPage(props) {
     );
 }
 
-export default ManagementPage;
+export default PaymentManagementPage;

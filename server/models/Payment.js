@@ -15,8 +15,9 @@ const paymentSchema = mongoose.Schema({
         default: [],
     },
     ack: {
-        type: Boolean,
-        default: false,
+        type: Number,
+        default: 0,
+        maxlength: 2
     }
 })
 
