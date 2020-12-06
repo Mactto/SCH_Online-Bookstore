@@ -13,6 +13,7 @@ import {
     REMOVE_CARD_ITEM,
     REMOVE_ADDR_ITEM,
     REMOVE_PRODUCT,
+    REMOVE_USER,
     CHANGE_USER_INFO,
     GET_PAYMENT_ITEM,
     CHANGE_ORDER_STATE,
@@ -183,18 +184,6 @@ export function removeAddrItem(zipcode){
     }
 }
 
-export function removeProduct(id){
-    const request = axios.post('/api/product/removeProduct', id)
-    .then(response => {
-        return response.data;
-    })
-
-    return {
-        type: REMOVE_PRODUCT,
-        payload: request,
-    }
-}
-
 export function changeUserInfo(info){
     const request = axios.post(`${USER_SERVER}/changeUserInfo`, info)
     .then(response => {
@@ -261,6 +250,30 @@ export function getAllUser() {
     });
     return {
         type: GET_ALL_USER,
+        payload: request,
+    }
+}
+
+export function removeProduct(id){
+    const request = axios.get(`/api/product/removeProduct?productID=${id}`)
+    .then(response => {
+        return response.data;
+    })
+
+    return {
+        type: REMOVE_PRODUCT,
+        payload: request,
+    }
+}
+
+export function removeUser(id){
+    const request = axios.get(`${USER_SERVER}/removeUser?userID=${id}`)
+    .then(response => {
+        return response.data;
+    })
+
+    return {
+        type: REMOVE_USER,
         payload: request,
     }
 }

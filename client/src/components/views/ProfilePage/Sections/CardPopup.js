@@ -61,7 +61,7 @@ function CardPopup(props) {
                 </select>
                 <br />
                 <br />
-                <button type="submit">
+                <button style={{textAlign: 'center'}} type="submit">
                     추가하기
                 </button>
             </Form>

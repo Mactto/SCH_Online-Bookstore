@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import {Icon, Col, Card, Row} from 'antd';
+import {Icon, Col, Card, Row, Button} from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
@@ -47,7 +47,7 @@ function LandingPage() {
     const renderCards = products.map((product, index) => {
         return <Col lg={6} md={8} xs={24} key={index}>
             <Card cover={<a href={`product/${product._id}`}><ImageSlider images={product.images}/></a>}>
-                <Meta title={product.title} description={`$${product.price}`}/>
+                <Meta title={product.title} description={`${product.price}원`}/>
             </Card>
             </Col>
     })
@@ -123,7 +123,7 @@ function LandingPage() {
 
             <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24}>
-                    <CheckBox list={continents} handleFilters={filter => handleFilters(filter, "continent")}/>
+                    <CheckBox />
                 </Col>
                 <Col lg={12} xs={24}>
                     <RadioBox list={price} handleFilters={filter => handleFilters(filter, "price")}/>
@@ -136,15 +136,15 @@ function LandingPage() {
 
             <br />
 
-            <Row gutter={[16, 16]}>
+            <Row gutter={[50, 50]}>
                 {renderCards}
             </Row>
 
             <br />
 
             {postSize >= Limit && 
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <button onClick={loadMoreHandler}>더보기</button>
+                <div style={{textAlign: 'center'}}>
+                    <Button type="primary" onClick={loadMoreHandler}>더보기</Button>
                 </div>
             }
         </div>

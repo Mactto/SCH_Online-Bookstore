@@ -35,11 +35,11 @@ function AddressPopup(props) {
                 <Input onChange={zipCodeHandler} value={zipCode}/>
                 <br />
                 <br />
-                <label>주소</label>
+                <label>상세주소</label>
                 <Input onChange={addrHandler} value={addr}/>
                 <br />
                 <br />
-                <button type="submit">
+                <button style={{textAlign: 'center'}} type="submit">
                     추가하기
                 </button>
             </Form>

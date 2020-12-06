@@ -1,68 +1,36 @@
-const continents = [
-    {
-        "_id" : 1,
-        "name" : "Africa"
-    },
-    {
-        "_id" : 2,
-        "name" : "Europe"
-    },
-    {
-        "_id" : 3,
-        "name" : "Asia"
-    },
-    {
-        "_id" : 4,
-        "name" : "North America"
-    },
-    {
-        "_id" : 5,
-        "name" : "South America"
-    },
-    {
-        "_id" : 6,
-        "name" : "Australia"
-    },
-    {
-        "_id" : 7,
-        "name" : "Antarctica"
-    }
-]
-
 const price = [
     {
         "_id": 0,
-        "name": "Any",
+        "name": "모두",
         "array": []
     },
     {
         "_id": 1,
-        "name": "$0 to $199",
-        "array": [0, 199]
+        "name": "0~8000원",
+        "array": [0, 8000]
     },
     {
         "_id": 2,
-        "name": "$200 to $249",
-        "array": [200, 249]
+        "name": "8000~16000원",
+        "array": [8000, 16000]
     },
     {
         "_id": 3,
-        "name": "$250 to $279",
-        "array": [250, 279]
+        "name": "16000~24000원",
+        "array": [16000, 24000]
     },
     {
         "_id": 4,
-        "name": "$200 to $299",
-        "array": [200, 299]
+        "name": "24000~32000원",
+        "array": [24000, 32000]
     },
     {
         "_id": 5,
-        "name": "More than $300",
-        "array": [300, 1500000]
+        "name": "32000원이상",
+        "array": [32000, 1500000]
     },
 ]
 
 export {
-    continents,
     price
 } 

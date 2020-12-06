@@ -12,6 +12,7 @@ import {
     REMOVE_CARD_ITEM,
     REMOVE_ADDR_ITEM,
     REMOVE_PRODUCT,
+    REMOVE_USER,
     CHANGE_USER_INFO,
     GET_PAYMENT_ITEM,
     GET_USER_PAYMENT_ITEM,
@@ -60,6 +61,8 @@ export default function(state={},action){
         case GET_ALL_PRODUCT:
             return {...state, products: action.payload}
         case GET_ALL_USER:
+            return {...state, users: action.payload}
+        case REMOVE_USER:
             return {...state, users: action.payload}
         default:
             return state;

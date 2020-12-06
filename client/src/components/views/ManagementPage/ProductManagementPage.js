@@ -10,17 +10,11 @@ function ProductManagementPage(props) {
         dispatch(getAllProduct())
     }, [props.user.userData])
 
-    const removeProduct = (e) => {
-        console.log(e.currentTarget.value);
-        let body = {
-            productId: e.currentTarget.value
-        }
-        console.log(body);
-        //상품 삭제
-        dispatch(removeProduct(body))
+    const removeHandler = (e) => {
+        dispatch(removeProduct(e.currentTarget.value))
     }
 
-    return (
+    return ( 
         <div style={{width: '80%', marginLeft: '10%', marginTop: '5%'}}>
             <table>
                 <thead>
@@ -43,7 +37,7 @@ function ProductManagementPage(props) {
                             <td>{item.price}</td>
                             <td>{item.discription}</td>
                             <td>{item.inventory}</td>
-                            <td><Button type="danger" value={item._id} onClick={removeProduct}>삭제</Button></td>
+                            <td><Button type="danger" value={item._id} onClick={removeHandler}>삭제</Button></td>
                         </tr>
                     ))}
                 </tbody>

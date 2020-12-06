@@ -147,12 +147,14 @@ router.get('/product', (req, res) => {
     })
 });
 
-router.post('/removeProduct', (req, res) => {
-    console.log(req.body.productId);
-    Product.remove({_id: req.body.productId})
+router.get('/removeProduct', (req, res) => {
+    Product.remove({_id: req.query.productID})
     .exec((err, products) => {
-        if(err) return res.status(400).send({success: false, err});
-        return res.status(200).send(products);
+        Product.find({})
+        .exec((err, products) => {
+            if(err) return res.status(400).send({success: false, err});
+            return res.status(200).send(products);
+        })
     })
 });
 

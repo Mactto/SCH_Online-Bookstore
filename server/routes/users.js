@@ -319,11 +319,23 @@ router.post('/changeUserInfo', auth, (req, res) => {
 })
 
 router.get('/user', (req, res) => {
-    User.find({})
+    User.find({role: 0})
     .exec((err, users) => {
         if(err) return res.status(400).send({success: false, err});
         return res.status(200).send(users);
     })
 });
+
+router.get('/removeUser', (req, res) => {
+    User.remove({_id: req.query.userID})
+    .exec((err, products) => {
+        User.find({})
+        .exec((err, users) => {
+            if(err) return res.status(400).send({success: false, err});
+            return res.status(200).send(users);
+        })
+    })
+});
+
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {getAllUser} from '../../../_actions/user_actions';
+import {getAllUser, removeUser} from '../../../_actions/user_actions';
 import { Card, Button } from 'antd';
 
 function CustomerManagementPage(props) {
@@ -10,14 +10,14 @@ function CustomerManagementPage(props) {
         dispatch(getAllUser())
     }, [props.user.userData])
 
-    const removeHandler = () => {
-
+    const removeHandler = (e) => {
+        dispatch(removeUser(e.currentTarget.value))
     }
 
     return (
         <div style={{width: '40%', marginLeft: '30%', marginTop: '5%'}}>
             {props.user.users && props.user.users.map(item => (
-                <Card title={item.title} style={{width: '100%', marginBottom: '30px'}}>
+                <Card title={item.title} style={{width: '100%', marginBottom: '30px', backgroundColor: '#F4E3E3'}}>
                     <img src={item.image} style={{marginBottom: '20px'}}/>
                     <p>회원번호 : {item._id}</p>
                     <p>이메일 : {item.email}</p>
@@ -39,7 +39,7 @@ function CustomerManagementPage(props) {
                     ))}
                     <hr />
                     <div style={{textAlign: 'right'}}>
-                        <Button type="danger" onClick={removeHandler}>회원삭제</Button>
+                        <Button type="danger" value={item._id} onClick={removeHandler}>회원삭제</Button>
                     </div>
                 </Card>
             ))}
