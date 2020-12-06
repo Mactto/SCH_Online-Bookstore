@@ -49,7 +49,7 @@ function HistoryPage(props) {
                         <tr key={index}>
                             <td>{index}</td>
                             <td>{item._id}</td>
-                            <td>{item.product.length > 1 ? item.product[0].name + ' ...' : item.product[0].name}</td>
+                            <td>{item.product.length > 1 ? item.product[0].name + ' 외 ' + (item.product.length-1) + '개' : item.product[0].name}</td>
                             <td>{calTotalPrice(index)}</td>
                             <td>{item.product[0].dateOfPurchase}</td>
                             {item.ack === 0 && <td>{'승인대기중'}</td>}

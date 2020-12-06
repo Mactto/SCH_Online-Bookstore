@@ -32,7 +32,8 @@ function PaymentManagementPage(props) {
                     <tr>
                         <td>번호</td>
                         <td>결제코드</td>
-                        <td>결제유저</td>
+                        <td>결제유저코드</td>
+                        <td>결제유저이름</td>
                         <td>결제금액</td>
                         <td>주문승인</td>
                     </tr>    
@@ -43,6 +44,7 @@ function PaymentManagementPage(props) {
                         <td>{index}</td>
                         <td>{item._id}</td>
                         <td>{item.user[0].id}</td>
+                        <td>{item.user[0].name}</td>
                         <td>{calTotalPrice(index)}</td>
                         {item.ack === 0 && <td><Button type="primary" value={item._id} onClick={stateHandler}>승인</Button></td>}
                         {item.ack === 1 && <td>{'승인완료'}</td>}
