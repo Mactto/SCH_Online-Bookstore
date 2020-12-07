@@ -20,6 +20,7 @@ import {
     GET_USER_PAYMENT_ITEM,
     GET_ALL_PRODUCT,
     GET_ALL_USER,
+    UPDATE_PRODUCT_INFO,
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -274,6 +275,18 @@ export function removeUser(id){
 
     return {
         type: REMOVE_USER,
+        payload: request,
+    }
+}
+
+export function updateProductInfo(info){
+    const request = axios.post('/api/product/updateProductInfo', info)
+    .then(response => {
+        return response.data;
+    })
+
+    return {
+        type: UPDATE_PRODUCT_INFO,
         payload: request,
     }
 }

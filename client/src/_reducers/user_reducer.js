@@ -19,6 +19,7 @@ import {
     CHANGE_ORDER_STATE,
     GET_ALL_PRODUCT,
     GET_ALL_USER,
+    UPDATE_PRODUCT_INFO,
 } from '../_actions/types';
  
 
@@ -64,6 +65,8 @@ export default function(state={},action){
             return {...state, users: action.payload}
         case REMOVE_USER:
             return {...state, users: action.payload}
+        case UPDATE_PRODUCT_INFO:
+            return {...state, products: action.payload}
         default:
             return state;
     }

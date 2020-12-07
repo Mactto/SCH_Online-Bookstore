@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, Descriptions, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../../_actions/user_actions';
@@ -7,10 +7,9 @@ import Payment from '../../../utils/Payment';
 function ProductInfo(props) {
     const dispatch = useDispatch();
     const [orderNum, setOrderNum] = useState(1);
-    const [buy, setBuy] = useState(false);
 
     const buyHandler = () => {
-        setBuy(true);
+        prompt();
     }
 
     const clickHandler = () => {
@@ -47,6 +46,8 @@ function ProductInfo(props) {
                     <Button style={{height: '50%'}} type="primary" onClick={downHandler}>▼</Button>
                 </div>
             </div>
+
+            
 
             <br />
             <br />

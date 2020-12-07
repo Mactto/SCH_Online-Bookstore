@@ -19,3 +19,4 @@ export const CHANGE_ORDER_STATE = 'change_order_state';
 export const GET_USER_PAYMENT_ITEM = 'get_user_payment_item';
 export const GET_ALL_PRODUCT = 'get_all_product';
 export const GET_ALL_USER = 'get_all_user';
+export const UPDATE_PRODUCT_INFO = 'update_product_info';

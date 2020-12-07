@@ -9,10 +9,8 @@ function DetailProductPage(props) {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        console.log(props);
         axios.get(`/api/product/product_by_id?id=${productId}&type=single`)
         .then(response => {
-            console.log(response.data)
             setProduct(response.data[0]);
         })
         .catch(err => alert(err))
@@ -30,7 +28,7 @@ function DetailProductPage(props) {
 
             <Row gutter={[16, 16]}>
                 <Col lg={12} sm={24}><ProductImage detail={product}/></Col>
-                <Col lg={12} sm={24}><ProductInfo detail={product}/></Col>
+                <Col lg={12} sm={24}><ProductInfo user={props.user.userData} detail={product}/></Col>
             </Row>
         </div>
     )

@@ -158,5 +158,26 @@ router.get('/removeProduct', (req, res) => {
     })
 });
 
+router.post('/updateProductInfo', (req, res) => {
+    Product.findOneAndUpdate(
+        {_id: req.body.id},
+        {
+            "$set": {
+                "title": req.body.title,
+                "price": req.body.price,
+                "discription": req.body.discription,
+                "inventory": req.body.inventory,
+            }
+        },
+        {new: true},
+        (err, product) => {
+            Product.find({})
+            .exec((err, products) => {
+                if(err) return res.status(400).send({success: false, err});
+                return res.status(200).send(products);
+            })
+        }
+    )
+});
 
 module.exports = router;

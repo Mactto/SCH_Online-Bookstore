@@ -17,6 +17,7 @@ router.get("/auth", auth, (req, res) => {
         isAuth: true,
         email: req.user.email,
         name: req.user.name,
+        lastname: req.user.lastname,
         image: req.user.image,
         cart: req.user.cart,
         card: req.user.card,
@@ -26,6 +27,7 @@ router.get("/auth", auth, (req, res) => {
 });
 
 router.post("/register", (req, res) => {
+    console.log(req.body);
     const user = new User(req.body);
 
     user.save((err, doc) => {
