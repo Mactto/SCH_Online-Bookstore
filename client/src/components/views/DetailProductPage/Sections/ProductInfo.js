@@ -2,15 +2,11 @@ import React, {useState, useEffect} from 'react';
 import { Button, Descriptions, Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../../_actions/user_actions';
-import Payment from '../../../utils/Payment';
 
 function ProductInfo(props) {
     const dispatch = useDispatch();
     const [orderNum, setOrderNum] = useState(1);
 
-    const buyHandler = () => {
-        prompt();
-    }
 
     const clickHandler = () => {
         dispatch(addToCart({id: props.detail._id, count: orderNum}))
@@ -54,12 +50,6 @@ function ProductInfo(props) {
             <br />
             
             <div style={{display:'flex', justifyContent: 'center'}}>
-                <div style={{marginRight: '10px'}}>
-                    <Button size="large" shape="round" type="primary" onClick={buyHandler}>
-                        구매하기
-                    </Button>
-                </div>
-
                 <div style={{marginLeft: '10px'}}>
                     <Button size="large" shape="round" type="danger" onClick={clickHandler}>
                         장바구니
