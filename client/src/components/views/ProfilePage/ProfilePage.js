@@ -70,6 +70,7 @@ function ProfilePage(props) {
         .then(response => {
             console.log(response);
         })
+        
     }
     const renderAddrs = () => (
         props.user.userData && props.user.userData.address.map((item, index) => (

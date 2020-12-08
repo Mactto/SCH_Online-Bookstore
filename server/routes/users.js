@@ -143,6 +143,53 @@ router.get('/removeFromCart', auth, (req, res) => {
     )
 })
 
+router.post('/oneSuccessBuy', auth, (req, res) => {
+    let transactionData = {};
+    
+    // 2. Payment Collection 안에 자세한 결제 정보를 넣어주기
+    transactionData.product = {
+        dateOfPurchase: Date.now(),
+        name: req.body.name,
+        id: req.body._id,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        paymentId: req.body.paymentData.paymentId,
+    };
+    transactionData.user = {
+        id: req.user._id,
+        name: req.user.name,
+        email: req.user.email,
+        card: req.body.info.cardInfo,
+        address: req.body.info.addrInfo
+    }
+    transactionData.data = req.body.paymentData;
+    transactionData.ack = 0;
+
+    const payment = new Payment(transactionData);
+    payment.save((err, doc) => {
+        if (err) return res.json({success: false, err})
+        User.findOneAndUpdate(
+            {_id: req.user._id},
+            {$push: {history: payment._id}},
+            {new: true},
+            (err, user) => {
+                if (err) return res.json({success:false, err});
+            }
+        )
+
+        Product.update(
+            {_id: req.body.id},
+            {
+                $inc: {
+                    "sold" : 1,
+                    "inventory": -(req.body.quantity)
+                }
+            },
+            {new: false}
+        )
+    })
+})
+
 router.post('/successBuy', auth, (req, res) => {
     // 1. User Collection 안에 History 필드 안에 간단한 결제 정보 넣어주기
     let history = [];
@@ -167,10 +214,9 @@ router.post('/successBuy', auth, (req, res) => {
         card: req.body.info.cardInfo,
         address: req.body.info.addrInfo
     }
-
     transactionData.data = req.body.paymentData;
     transactionData.product = history;
-    transactionData.state = false;
+    transactionData.ack = 0;
 
     const payment = new Payment(transactionData);
     payment.save((err, doc) => {

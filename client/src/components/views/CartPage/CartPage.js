@@ -72,12 +72,10 @@ function CartPage(props) {
 
     const cardChangeHandler = (e) => {
         setInfo({addrInfo: info.addrInfo, cardInfo: e.currentTarget.value});
-        console.log(info);
     }
 
     const addrChangeHandler = (e) => {
         setInfo({cardInfo: info.cardInfo, addrInfo: e.currentTarget.value});
-        console.log(info);
     }
 
     const transactionSuccess = (data) => {

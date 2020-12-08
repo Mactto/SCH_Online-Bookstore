@@ -80,7 +80,7 @@ function UploadProductPage(props) {
                 <TextArea onChange={discriptionChangeHandler} value={discription} />
                 <br />
                 <br />
-                <label>가격($)</label>
+                <label>가격(원)</label>
                 <Input type="number" onChange={priceChangeHandler} value={price}/>
                 <br />
                 <br />
