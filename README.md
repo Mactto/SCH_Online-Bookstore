@@ -1,5 +1,7 @@
 # 💻 온라인 서점 웹 서비스
 
+<<<<<<< HEAD
+
 ---
 
 ### 🔍 Introduce
@@ -8,11 +10,15 @@
 
 순천향대학교 온라인 도서관 시스템
 
+---
+
 ### 🔨 Development Environment
 
 - Front-End : React JS
 - Back-End : Node JS
 - Database : MongoDB
+
+---
 
 ### ⚡️ Implementation Function
 
@@ -30,6 +36,8 @@
 3. Shopping Basket
 4. History
 5. Profile
+
+---
 
 ### 📷 Capture
 
