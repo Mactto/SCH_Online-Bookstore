@@ -1,7 +1,5 @@
 # 💻 온라인 서점 웹 서비스
 
-<<<<<<< HEAD
-
 ---
 
 ### 🔍 Introduce
@@ -41,25 +39,32 @@
 
 ### 📷 Capture
 
-**Main Interface**  
+**[ Main Interface ]**  
+  
 ![image](https://user-images.githubusercontent.com/64149514/102495246-35c28500-40b9-11eb-9210-c8e13efd1014.png)
 
-**Product Interface**  
+**[ Product Interface ]**  
+  
 ![image](https://user-images.githubusercontent.com/64149514/102495406-65718d00-40b9-11eb-96e7-5f4993996dca.png)
 
-**History Interface**
+**[ History Interface ]**
+  
 ![image](https://user-images.githubusercontent.com/64149514/102495641-ae294600-40b9-11eb-9582-38bf0b6618a1.png)
 
-**Shopping Basket Interface**
+**[ Shopping Basket Interface ]**
+  
 ![image](https://user-images.githubusercontent.com/64149514/102495758-d9139a00-40b9-11eb-8633-f5448ec8016d.png)
 
-**Admin Interface**
+**[ Admin Interface ]**
+  
 ![image](https://user-images.githubusercontent.com/64149514/102495913-0fe9b000-40ba-11eb-9f34-225a3175abeb.png)
 
-**Upload Interface**
+**[ Upload Interface ]**
+  
 ![image](https://user-images.githubusercontent.com/64149514/102496023-30b20580-40ba-11eb-8ae3-c3f42073d260.png)
 
-**Management Interface**
+**[ Management Interface ]**
+  
 ![image](https://user-images.githubusercontent.com/64149514/102496103-4fb09780-40ba-11eb-80da-655522fad7dc.png)
 
 ![image](https://user-images.githubusercontent.com/64149514/102496154-635bfe00-40ba-11eb-9461-521e928c51d5.png)
