@@ -8,6 +8,8 @@
 
 순천향대학교 온라인 도서관 시스템
 
+코드 설명 : [Mactto's Velog](https://velog.io/@mactto3487/%EC%88%9C%EC%B2%9C%ED%96%A5%EB%8C%80-%EC%98%A8%EB%9D%BC%EC%9D%B8-%EC%84%9C%EC%A0%90)
+
 ---
 
 ### 🔨 Development Environment
